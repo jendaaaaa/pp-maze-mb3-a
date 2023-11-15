@@ -134,5 +134,8 @@ function assignColors(){
     radio.sendValue("COLOR2", ARR_COL[indC2]);
     pause(12);
     radio.sendValue("COLOR3", ARR_COL[indC3]);
+    pause(12);
+    radio.sendValue("TIMER", 1);
     pause(1234);
+
 }
