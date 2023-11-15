@@ -1,5 +1,6 @@
-// GROUP MB3-A
+// GROUP MB-A
 // gate G1, switch S1, infrared R1, display D1, neopixel N1
+// radio to MB-C,D,E
 
 // INIT
 radio.setGroup(8)
@@ -25,12 +26,22 @@ let TIME_DEBOUNCE = 30
 let PIN_PRESSED = 0
 let PIN_RELEASED = 1
 
+// COLORS
+let COL_BLUE = 216;
+let COL_PINK = -14;
+let COL_GREEN = 150;
+let COL_ORANGE = 0;
+let COL_YELLOW = 20;
+let COL_NO_COLOR = 60;
+let COL_EMPTY = -1000;
+let ARR_COL = [COL_BLUE, COL_PINK, COL_GREEN, COL_YELLOW];
+
 // CONSTANTS
 let NUM_PRESS_TO_OPEN = 4
 let SERVO_OPEN = 85
 let SERVO_CLOSE = 10
 let RADIO_RESET = 1
-let ARR_COLORS = [NeoPixelColors.Red, NeoPixelColors.Orange, NeoPixelColors.Yellow, NeoPixelColors.Green]
+let ARR_COL_COUNT = [NeoPixelColors.Red, NeoPixelColors.Orange, NeoPixelColors.Yellow, NeoPixelColors.Green]
 
 // VARIABLES
 let value = 0
@@ -51,6 +62,7 @@ radio.onReceivedNumber(function(receivedNumber: number) {
         displayNeopixel.show()
     }
 })
+
 // MAIN
 basic.forever(function() {
     debounceButton()
@@ -62,6 +74,17 @@ basic.forever(function() {
     }
     pins.servoWritePin(PIN_SERVO, servo)
     displaySegment.showNumber(value)
+})
+
+basic.forever(function() {
+    if(infrared === PIN_PRESSED){
+        assignColors();
+    }
+})
+
+// DEBUG - DELETE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+input.onButtonPressed(Button.A, function() {
+    assignColors();
 })
 
 // FUNCTIONS
@@ -89,7 +112,27 @@ function debounceButton() {
 
 function drawNeopixel(){
     for (let i = 0; i < 2*value; i++){
-        displayNeopixel.setPixelColor(i, ARR_COLORS[value-1])
+        displayNeopixel.setPixelColor(i, ARR_COL_COUNT[value-1])
         displayNeopixel.show()
     }
+}
+
+function assignColors(){
+    let indC1 = -1;
+    let indC2 = -1;
+    let indC3 = -1;
+    let NUM_COLORS = ARR_COL.length;
+    indC1 = randint(0, NUM_COLORS-1);
+    while (indC1 !== indC2){
+        indC2 = randint(0, NUM_COLORS - 1);
+    }
+    while (indC2 !== indC3){
+        indC3 = randint(0, NUM_COLORS - 1);
+    }
+    radio.sendValue("COLOR1", ARR_COL[indC1]);
+    pause(12);
+    radio.sendValue("COLOR2", ARR_COL[indC2]);
+    pause(12);
+    radio.sendValue("COLOR3", ARR_COL[indC3]);
+    pause(1234);
 }
