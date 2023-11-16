@@ -57,7 +57,8 @@ displayNeopixel.show()
 // INTERRUPT
 radio.onReceivedNumber(function(receivedNumber: number) {
     if (receivedNumber === RADIO_RESET){
-        value = 0
+        value = 0;
+        assignColors();
         displayNeopixel.clear()
         displayNeopixel.show()
     }
@@ -137,5 +138,4 @@ function assignColors(){
     pause(12);
     radio.sendValue("TIMER", 1);
     pause(1234);
-
 }
