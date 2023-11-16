@@ -1,5 +1,5 @@
 // GROUP MB-A
-// gate G1, switch S1, infrared R1, display D1, neopixel N1
+// gate G1, switch S1, infrared R1, display D1, neopixel N4
 // radio to MB-C,D,E
 
 // INIT
