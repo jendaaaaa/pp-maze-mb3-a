@@ -125,18 +125,21 @@ function assignColors(){
     let indC3 = -1;
     let NUM_COLORS = ARR_COL.length;
     indC1 = randint(0, NUM_COLORS-1);
-    while (indC1 !== indC2){
+    while (indC1 === indC2){
         indC2 = randint(0, NUM_COLORS - 1);
     }
-    while (indC2 !== indC3 && indC1 !== indC3){
+    while (indC2 === indC3 && indC1 === indC3){
         indC3 = randint(0, NUM_COLORS - 1);
     }
-    radio.sendValue("COLOR1", ARR_COL[indC1]);
-    pause(12);
-    radio.sendValue("COLOR2", ARR_COL[indC2]);
-    pause(12);
-    radio.sendValue("COLOR3", ARR_COL[indC3]);
-    pause(12);
-    radio.sendValue("TIMER", 1);
+    for (let i = 0; i < 5; i++){
+        radio.sendValue("COLOR1", ARR_COL[indC1]);
+        // pause(50);
+        radio.sendValue("COLOR2", ARR_COL[indC2]);
+        // pause(50);
+        radio.sendValue("COLOR3", ARR_COL[indC3]);
+        pause(50);
+
+    }
+    // radio.sendValue("TIMER", 1);
     pause(1234);
 }
