@@ -4,7 +4,7 @@
 
 // INIT
 radio.setGroup(8)
-led.enable(false)
+basic.showString("A")
 
 let PIN_SCL = DigitalPin.P19;
 let PIN_SDA = DigitalPin.P20;
@@ -65,6 +65,7 @@ radio.onReceivedNumber(function(receivedNumber: number) {
 })
 
 // MAIN
+assignColors();
 basic.forever(function() {
     debounceButton()
     infrared = pins.digitalReadPin(PIN_INFRARED)
