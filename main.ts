@@ -9,9 +9,9 @@ led.enable(false)
 let PIN_SCL = DigitalPin.P19;
 let PIN_SDA = DigitalPin.P20;
 let PIN_SERVO = AnalogPin.P0;
-let PIN_BUTTON = DigitalPin.P1;
-let PIN_INFRARED = DigitalPin.P8;
-let PIN_NEOPIXEL = DigitalPin.P9;
+let PIN_NEOPIXEL = DigitalPin.P1;
+let PIN_BUTTON = DigitalPin.P8;
+let PIN_INFRARED = DigitalPin.P9;
 
 let displaySegment = TM1637.create(PIN_SCL, PIN_SDA, 10, 4)
 let displayNeopixel = neopixel.create(PIN_NEOPIXEL, 8, NeoPixelMode.RGB)
@@ -30,8 +30,8 @@ let PIN_RELEASED = 1
 let COL_BLUE = 216;
 let COL_PINK = -14;
 let COL_GREEN = 150;
-let COL_ORANGE = 0;
 let COL_YELLOW = 20;
+// let COL_ORANGE = 0;
 let COL_NO_COLOR = 60;
 let COL_EMPTY = -1000;
 let ARR_COL = [COL_BLUE, COL_PINK, COL_GREEN, COL_YELLOW];
@@ -127,7 +127,7 @@ function assignColors(){
     while (indC1 !== indC2){
         indC2 = randint(0, NUM_COLORS - 1);
     }
-    while (indC2 !== indC3){
+    while (indC2 !== indC3 && indC1 !== indC3){
         indC3 = randint(0, NUM_COLORS - 1);
     }
     radio.sendValue("COLOR1", ARR_COL[indC1]);
