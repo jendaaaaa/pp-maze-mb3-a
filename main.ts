@@ -35,6 +35,7 @@ let COL_YELLOW = 20;
 let COL_NO_COLOR = 60;
 let COL_EMPTY = -1000;
 let ARR_COL = [COL_BLUE, COL_PINK, COL_GREEN, COL_YELLOW];
+let NUM_COLORS = ARR_COL.length;
 
 // CONSTANTS
 let NUM_PRESS_TO_OPEN = 4
@@ -120,26 +121,21 @@ function drawNeopixel(){
 }
 
 function assignColors(){
-    let indC1 = -1;
-    let indC2 = -1;
-    let indC3 = -1;
-    let NUM_COLORS = ARR_COL.length;
-    indC1 = randint(0, NUM_COLORS-1);
-    while (indC1 === indC2){
-        indC2 = randint(0, NUM_COLORS - 1);
+    let c1 = randint(0, NUM_COLORS-1);
+    let c2 = -1;
+    let c3 = -1;
+    while (c2 === c1 || c2 === c3 || c1 === c3){
+        c2 = randint(0, NUM_COLORS-1);
+        c3 = randint(0, NUM_COLORS-1);
     }
-    while (indC2 === indC3 && indC1 === indC3){
-        indC3 = randint(0, NUM_COLORS - 1);
+    for (let i = 0; i < 10; i++){
+        radio.sendValue("COLOR1", ARR_COL[c1]);
     }
-    for (let i = 0; i < 5; i++){
-        radio.sendValue("COLOR1", ARR_COL[indC1]);
-        // pause(50);
-        radio.sendValue("COLOR2", ARR_COL[indC2]);
-        // pause(50);
-        radio.sendValue("COLOR3", ARR_COL[indC3]);
-        pause(50);
-
+    for (let i = 0; i < 10; i++){
+        radio.sendValue("COLOR2", ARR_COL[c1]);
     }
-    // radio.sendValue("TIMER", 1);
-    pause(1234);
+    for (let i = 0; i < 10; i++){
+        radio.sendValue("COLOR3", ARR_COL[c1]);
+    }
+    pause(1010);
 }
