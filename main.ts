@@ -132,10 +132,10 @@ function assignColors(){
         radio.sendValue("COLOR1", ARR_COL[c1]);
     }
     for (let i = 0; i < 10; i++){
-        radio.sendValue("COLOR2", ARR_COL[c1]);
+        radio.sendValue("COLOR2", ARR_COL[c2]);
     }
     for (let i = 0; i < 10; i++){
-        radio.sendValue("COLOR3", ARR_COL[c1]);
+        radio.sendValue("COLOR3", ARR_COL[c3]);
     }
     pause(1010);
 }
