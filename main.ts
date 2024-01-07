@@ -2,10 +2,10 @@
 // gate G1, switch S1, infrared R1, display D1, neopixel N4
 // radio to MB-C,D,E
 
-// LAST UPDATE 12/18
+// LAST UPDATE 07/01/24
 
 // INIT
-radio.setGroup(8)
+radio.setGroup(9)
 basic.showString("A")
 
 let PIN_SCL = DigitalPin.P19;
@@ -43,8 +43,8 @@ let NUM_COLORS = ARR_COL.length;
 
 // CONSTANTS
 let NUM_PRESS_TO_OPEN = 4
-let SERVO_OPEN = 85
-let SERVO_CLOSE = 10
+let SERVO_OPEN = 80
+let SERVO_CLOSE = 25
 let RADIO_RESET = 1
 let ARR_COL_COUNT = [NeoPixelColors.Red, NeoPixelColors.Orange, NeoPixelColors.Yellow, NeoPixelColors.Green]
 
